@@ -33,10 +33,31 @@ pip install -r requirements.txt
 ```
 
 4. 設定ファイルの準備
+- `.env`ファイルを作成
 - `config/credentials.json`を作成(Google Cloud Platformで取得した認証情報)
 - `config/user_columns.json`を作成(ユーザー情報の設定)
 
 ## 設定ファイル
+
+### .env
+
+以下の環境変数を設定します:
+
+```env
+# Discord Bot設定
+DISCORD_TOKEN=your_discord_bot_token
+DISCORD_REPORT_CHANNEL_ID=1234567890
+DISCORD_DECLARATION_CHANNEL_ID=1234567890
+
+# Google Sheets設定
+SPREADSHEET_ID=your_spreadsheet_id
+```
+
+各環境変数の説明:
+- `DISCORD_TOKEN`: Discord Botのトークン
+- `DISCORD_REPORT_CHANNEL_ID`: 日報チャンネルのID
+- `DISCORD_DECLARATION_CHANNEL_ID`: 宣言チャンネルのID
+- `SPREADSHEET_ID`: Google SpreadsheetsのID(URLの一部)
 
 ### credentials.json
 
@@ -116,6 +137,7 @@ python tests/test_performance.py
 
 ## 注意事項
 
+- .envファイルには機密情報が含まれるため、Gitにコミットしないでください
 - credentials.jsonには機密情報が含まれるため、Gitにコミットしないでください
 - user_columns.jsonにはユーザー情報が含まれるため、Gitにコミットしないでください
 - 実行時は必ず仮想環境を有効化してください
