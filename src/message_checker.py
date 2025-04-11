@@ -10,9 +10,9 @@ class MessageChecker:
         if not content:
             return False
 
-        # メッセージを行に分割し、最初の5行を取得
-        lines = content.split('\n')[:5]
-        print(f"\n    最初の5行を確認:")
+        # メッセージを行に分割し、最初の10行を取得
+        lines = content.split('\n')[:10]
+        print(f"\n    最初の10行を確認:")
         for i, line in enumerate(lines, 1):
             print(f"    {i}行目: {line}")
 

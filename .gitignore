@@ -3,6 +3,7 @@ config/credentials.json
 config/user_columns.json
 全体像.txt
 .env
+ユーザー更新方法.md
 
 # Python
 __pycache__/
