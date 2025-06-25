@@ -33,15 +33,15 @@ DATE_FORMATS = [
     # 年/月/日パターン(優先)
     r'(?<!\d)(?:20)?\d{2}[/-]\d{1,2}[/-]\d{1,2}(?!\d)',  # YYYY/MM/DD, YY/MM/DD
     # 月/日パターン(年/月/日にマッチしない場合のみ)
-    r'(?<!\d)\d{1,2}[/-]\d{1,2}(?![/-]\d)(?!\d)',        # MM/DD
-    r'\d{1,2}月\d{1,2}日'                                # MM月DD日
+    r'(?<!\d)\d{1,2}[/-]\d{1,2}(?=日[報誌記]|$|\s|[^0-9])',   # MM/DD（日報/日誌/空白/行末）
+    r'\d{1,2}月\d{1,2}日(?=日[報誌記]|$|\s|[^0-9])'    # MM月DD日
 ]
 
 # 1月1日の開始行
 START_ROW = 7  # 7行目からデータ開始
 
 # Discord設定の追加
-MESSAGE_HISTORY_LIMIT = 100  # メッセージ履歴取得の制限
+MESSAGE_HISTORY_LIMIT = 500  # メッセージ履歴取得の制限
 
 # ユーザー設定の読み込み
 def _column_to_index(column: str) -> int:
@@ -71,6 +71,7 @@ def _load_user_columns():
         sangen_index = _column_to_index(sangen_col)
         report_col = _index_to_column(sangen_index + 1)
         user_columns[user['userId']] = {
+            "name": user.get('name', 'N/A'),  # nameフィールドがない場合はN/A
             "declaration": sangen_col,
             "report": report_col
         }
